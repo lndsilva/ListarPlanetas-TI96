@@ -2,6 +2,7 @@ package br.com.local.listarplanetas;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +14,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
+    //Variavel global do componente listView
     ListView listView;
+
+    //Simulando o carregamento de dados
 
     String nomePlanetas[] = {"Jupiter", "Lua", "Marte", "Mercurio",
             "Netuno", "Plutão", "Saturno", "Sol", "Terra", "Urano", "Venus"};
@@ -29,16 +33,27 @@ public class MainActivity extends AppCompatActivity {
 
         listView = findViewById(R.id.idListaPlanetas);
 
+        //Instanciando a classe que contém o Adapter
         Adaptador adaptador = new Adaptador();
 
+        //Montando a lista com o modelo
         listView.setAdapter(adaptador);
 
+        //Criando o clique no item da lista
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getApplicationContext(),
+               /* Toast.makeText(getApplicationContext(),
                         "Cliquei no planeta: " + nomePlanetas[position],
-                        Toast.LENGTH_SHORT).show();
+                        Toast.LENGTH_SHORT).show();*/
+                Intent intent = new Intent(getApplicationContext(), MostraPlanetas_Activity.class);
+
+                intent.putExtra("nomePlaneta", nomePlanetas[position]);
+                intent.putExtra("imagemPlaneta", imgPlanetas[position]);
+                //abrir a janela
+                startActivity(intent);
+
+
             }
         });
     }
@@ -66,15 +81,15 @@ public class MainActivity extends AppCompatActivity {
             TextView txtNomePlanetas;
             ImageView imagemPlanetas;
 
-            View v = getLayoutInflater().inflate(R.layout.modelo_planetas, null);
+            View carregaView = getLayoutInflater().inflate(R.layout.modelo_planetas, null);
 
-            txtNomePlanetas = v.findViewById(R.id.txtNomePlaneta);
-            imagemPlanetas = v.findViewById(R.id.imgPlaneta);
+            txtNomePlanetas = carregaView.findViewById(R.id.txtNomePlaneta);
+            imagemPlanetas = carregaView.findViewById(R.id.imgPlaneta);
 
             txtNomePlanetas.setText(nomePlanetas[position]);
             imagemPlanetas.setImageResource(imgPlanetas[position]);
 
-            return v;
+            return carregaView;
         }
     }
 }
