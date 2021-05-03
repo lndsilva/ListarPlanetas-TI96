@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 public class MostraPlanetas_Activity extends AppCompatActivity {
 
+    //declarando os objetos globais para receber o xml
     TextView txtPlanetas;
     ImageView imgPlanetas;
 

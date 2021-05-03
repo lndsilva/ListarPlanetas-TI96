@@ -46,6 +46,9 @@ public class MainActivity extends AppCompatActivity {
                /* Toast.makeText(getApplicationContext(),
                         "Cliquei no planeta: " + nomePlanetas[position],
                         Toast.LENGTH_SHORT).show();*/
+
+                //A forma de abrir a janela passando valores no momento
+
                 Intent intent = new Intent(getApplicationContext(), MostraPlanetas_Activity.class);
 
                 intent.putExtra("nomePlaneta", nomePlanetas[position]);
@@ -75,9 +78,11 @@ public class MainActivity extends AppCompatActivity {
             return 0;
         }
 
+        //Inflar o modelo de layout para ser inserido na listView
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
 
+            //Declarando os componentes do modelo
             TextView txtNomePlanetas;
             ImageView imagemPlanetas;
 
