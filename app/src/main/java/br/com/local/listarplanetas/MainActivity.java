@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-               /* Toast.makeText(getApplicationContext(),
+               /*Toast.makeText(getApplicationContext(),
                         "Cliquei no planeta: " + nomePlanetas[position],
                         Toast.LENGTH_SHORT).show();*/
 
@@ -51,8 +51,11 @@ public class MainActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(getApplicationContext(), MostraPlanetas_Activity.class);
 
+                //Passar os valores da classe atual para a classe de destino
+
                 intent.putExtra("nomePlaneta", nomePlanetas[position]);
                 intent.putExtra("imagemPlaneta", imgPlanetas[position]);
+
                 //abrir a janela
                 startActivity(intent);
 
@@ -61,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    //Inner class para criar o adaptador
     public class Adaptador extends BaseAdapter {
 
         @Override
